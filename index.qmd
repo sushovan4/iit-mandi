@@ -1,0 +1,290 @@
+---
+title: "A Taste of Topological Data Analysis"
+logo: logo.png
+subtitle: "Shape Reconstruction from Noisy Data"
+author: "<b>Sushovan Majhi</b><br><i>George Washington University, Washington DC, USA</i>"
+fig-cap-location: bottom
+
+format: 
+    revealjs:
+        theme: dark
+        slide-number: true
+        self-contained: true
+        incremental: true
+        css: style.css
+        navigation-mode: vertical
+bibliography: references.bib
+editor: 
+  render-on-save: true
+---
+
+# 
+
+![Data Science vs Math](joke.png)
+
+# Today's Agenda
+- Getting to know each other
+- Topological Data Analysis (TDA)
+  - Why and How
+- The problem of shape reconstruction
+- Shape reconstruction techniques
+- Opportunities
+- Questions
+
+# About Me
+
+## Tulane University, New Orleans
+![PhD in Mathematics](gibson.jpg){fig-align="center"}
+
+## UC Berkeley, California
+![Data Science Postdoc Researcher](berkeley.jpg){fig-align="center"}
+
+## George Washington University, DC
+![Assistant Professor of Data Science](gwu.jpg){fig-align="center"}
+
+## Get in Touch
+  
+![](qr.png){fig-align="center" width="300"}
+
+- Website: smajhi.com
+- Email: <s.majhi@gwu.edu>
+
+## What is Data Science?
+- What is Data Science?
+
+  > It's the *art* of learning meaningful *patterns* from data.
+
+- Who is a Data Scientist?
+  
+  > *You*.
+
+- What is Topological Data Analysis (TDA)?
+
+  > TDA is a subfield of data science that focuses on the systematic learning  of *geometric* and *topological* patterns of data.
+
+# Topological Data Analysis
+![](WordArt.png){fig-align="center"}
+
+## Shape of Data
+![A sample](sample_wedge.png)
+
+## Learn Geometric Patterns (Features)
+![A Reconstruction](wedge.png)
+
+- The topology of data is the wedge of two circles (two holes)
+- The geometry of the data is graph-like
+
+
+## Success of TDA
+
+1. The data inherit an intrinsic topological sturcture
+2. Topology-inspired methods are robust to outliers
+3. Easy to mitigate the *curse of dimensionality*
+4. Geometry-aware deep learning methods facilitate interpretation 
+      - geometricdeeplearning.com
+- Software `Giotto-tda`, `Gudhi`
+
+## Particular Application Areas {.smaller}
+- Shape Reconstruction
+  - Manifold: @MajhiLatschev
+  - Graph: @Majhi2023
+  - More general spaces: @majhiStab
+- Detection of Financial Market Crash
+  - @Rai2024-id
+- Predicting Indian Monsoon
+  - Ongoing collaboration
+- Deep Learning Pipelines
+  - topological deep learning
+
+
+
+## Related Fields {.smaller}
+- Computational Topology
+
+  > algorithmcally compute various topological invariants, e.g., homology groups, Betti numbers, Euler characteristic, etc
+
+- Applied Topology
+  
+  > apply topological ideas in sensor network, motion planning in robotics configuration spaces etc
+
+- TDA
+  
+  > learning from big data, (stratified) manifold learning, shape reconstruction and comparison, and so much more...
+
+
+
+# The Problem of Shape Reconstruction
+
+## The Good Shapes
+
+:::{layout-ncol="2"}
+![Circle](circle.png)
+
+![Donut](torus.png){width="100%"}
+:::
+
+## The Bad Shapes
+![VIT Chennai Campus](map.png)
+
+## A Real Application
+![The City of Berlin](berlin.jpg)
+
+Q: How to draw the map of the city from a noisy point-cloud of GPS locations?
+
+## A Sample Output
+![Source: mapconstruction.org](mahmuda.jpg)
+
+# The Mathematical Formulation {.smaller}
+
+- **Shape:** A *Shape* is modeled as a metric space $(M,d_M)$.
+  - general compact set, metric graph, Riemannian manifold.
+
+- **Sample:** A *finite* metric space $(X,d_X)$ *close* to $M$.
+
+    - small Hausdorff proximity if $M$ is a Euclidean submanifold and $X\subset\mathbb R^d$; alternatively, small Gromov--Hausdorff distance.
+
+
+- **Goal:** Infer the topology of $M$ from $X$.
+
+    - Estimate only the Betti numbers: number of connected components, cycles, voids, etc, of $M$.
+
+    - construct a topological space $\widetilde{M}$ from $X$ to retain the topology of $M$, i.e., $M\simeq\widetilde{M}$.
+
+# Vietoris--Rips Complex {.smaller background-color="white"}
+  - a metric space $(X,d_X)$
+  
+  - a scale $\beta>0$ 
+  
+   - $R_\beta(X)$ is an abstract simplicial complex such that
+   
+        - each subset $A\subset X$ of size $k$ with diameter at most $\beta$ is a $(k-1)$-simplex.
+
+. . .
+
+```{ojs}
+//| panel: sidebar
+
+viewof scale = Inputs.range([0, 300], {
+  step: 1,
+  value: 0,
+  label: tex`\beta`
+})
+viewof btn = Inputs.button("clear", {
+  value: null,
+  reduce: () => { V.length = 0; viewof scale.value = 0;viewof scale.dispatchEvent(new CustomEvent("input")); }
+})
+```
+
+```{ojs}
+V = [];
+{
+  const height = "300px";
+  const container = d3.create("div").style("position", "relative");
+  let svg = container
+    .append("svg")
+    .attr("class", "canvas")
+    .style("margin-left", "15px")
+    .style("width", "90%")
+    .style("height", height)
+    .style("border", "0.5px solid #eee");
+  
+  const triangles = svg.append("g").attr("class", "triangles");
+  const edges = svg.append("g").attr("class", "edges");
+  const vertices = svg.append("g").attr("class", "vertices");
+
+  // scale
+  container
+    .append("div")
+    .style("width", "15px")
+    .style("height", height)
+    .style("background", "#eee")
+    .style("position", "absolute")
+    .style("top", "0")
+    .style("bottom", "0")
+    .append("div")
+    .style("width", "100%")
+    .style("height", scale + "px")
+    .style("background", "steelblue");
+  container
+    .append("div")
+    .style("margin-left", "3px")
+    .style("width", height)
+    .style("display", "inline-block")
+    .style("text-align", "center")
+    .style("transform", "rotate(-90deg)")
+    .style("transform-origin", "top left")
+    .html(tex`\epsilon`.outerHTML);
+
+  drawRips(svg, sc.rips(V, scale, 2));
+
+  svg.on("click", (e) => {
+    const coord = d3.pointer(e);
+    V.push(coord);
+    drawRips(svg, sc.rips(V, scale, 2));
+  });
+  return container.node();
+}
+```
+
+
+```{ojs}
+import { slider } from "@jashkenas/inputs"
+sc = require("https://cdn.jsdelivr.net/npm/@tdajs/simplicial-complex@1.2.1/dist/min.js")
+```
+
+
+```{ojs}
+drawRips = function (svg, rips) {
+  if (rips.simplices[2]) {
+    svg.selectAll(".triangle")
+      .data(rips.simplices[2])
+      .join("path")
+      .attr("class", "triangle")
+      .attr("d", (d) => d3.line()(d.map((v) => V[v])))
+      .attr("fill", "lightgreen")
+      .attr("stroke", "none")
+      .attr("opacity", "0.5");
+  }
+  if (rips.simplices[1]) {
+    svg.selectAll(".edge")
+      .data(rips.simplices[1])
+      .join("path")
+      .attr("class", "edge")
+      .attr("d", (d) => d3.line()(d.map((v) => V[v])))
+      .attr("stroke", "red");
+  }
+
+  svg.selectAll(".vertex")
+    .data(V)
+    .join("circle")
+    .attr("class", "vertex")
+    .attr("class", "vertex")
+    .attr("cx", (d) => d[0])
+    .attr("cy", (d) => d[1])
+    .attr("r", "2px")
+    .on("mouseover", function () {
+      d3.select(this).attr("fill", "orange").attr("r", "5px");
+    })
+    .on("mouseout", function () {
+      d3.select(this).attr("fill", "black").attr("r", "2px");
+    });
+    return svg;
+}
+```
+
+# {background-iframe="https://www.smajhi.com/shape-reconstruction" background-interactive="true"}
+
+
+# Limitations of TDA
+- TDA is theory-heavy with a steep learning curve
+- The community is strong but not as vast
+- Not applicable to data without any instrinsic geometry.
+- We need more open-source software implementation of TDA tools.
+
+# References
+
+# Opportunities
+- TDA 
+
+# Questions
+Thank you
