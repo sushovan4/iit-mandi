@@ -99,51 +99,54 @@ editor:
 
 ## Particular Application Areas {.smaller}
 - Shape Reconstruction
-  - Manifold: @MajhiLatschev
-  - Graph: @Majhi2023
-  - More general spaces: @majhiStab
+  - <span class="green">Manifold</span>: @MajhiLatschev
+  - <span class="green">Graph<.span>: @Majhi2023
+  - <span class="green">More general spaces</span>: @majhiStab
 - Detection of Financial Market Crash
   - @Rai2024-id
 - Predicting Indian Monsoon
   - Ongoing collaboration
 - Deep Learning Pipelines
   
-  - topological deep learning
+  - <span class="green">topological deep learning</span>
 
 
 
-# The Problem of Shape Reconstruction
+# The <span class="red">Problem</span> of <span class="green">Shape Reconstruction</span>
 
-## The Good Shapes
+## The <span class="green">Good</span> Shapes
 
 :::{layout-ncol="2"}
 ![Circle](circle.png)
 
-![Donut](torus.png){width="100%"}
+![Donut](torus.png){width="100%"}3
 :::
 
-## The Bad Shapes
-![VIT Chennai Campus](map.png)
+## The <span class="red">Bad</span> Shapes
+![IIT Mandi Campus](map.png)
 
 ## A Real Application
 ![The City of Berlin](berlin.jpg)
 
 Q: How to draw the map of the city from a noisy point-cloud of GPS locations?
 
-## A Sample Output
+## A Sample Reconstruction
 ![Source: mapconstruction.org](mahmuda.jpg)
 
-# The Mathematical Formulation {.smaller}
+# The <span class="green">Mathematical</span> Formulation
 
-- **Shape:** A *Shape* is modeled as a metric space $(M,d_M)$.
+##
+
+- <span class="green">**Shape**</span>: A *Shape* is modeled as a metric space $(M,d_M)$.
   - general compact set, metric graph, Riemannian manifold.
 
-- **Sample:** A *finite* metric space $(X,d_X)$ *close* to $M$.
+- <span class="green">**Sample**</span>: A *finite* metric space $(X,d_X)$ *close* to $M$.
 
     - small Hausdorff proximity if $M$ is a Euclidean submanifold and $X\subset\mathbb R^d$; alternatively, small Gromov--Hausdorff distance.
 
+##
 
-- **Goal:** Infer the topology of $M$ from $X$.
+- <span class="green">**Goal**</span>: Infer the topology of $M$ from $X$.
 
     - Estimate only the Betti numbers: number of connected components, cycles, voids, etc, of $M$.
 
@@ -280,10 +283,11 @@ drawRips = function (svg, rips) {
 - Not applicable to data without any instrinsic geometry.
 - We need more open-source software implementation of TDA tools.
 
-# References
 
 # Opportunities
 - TDA 
 
 # Questions
 Thank you
+
+# References
