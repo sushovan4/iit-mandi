@@ -1,8 +1,11 @@
 ---
-title: "A Taste of Topological Data Analysis"
+title: "A Taste of Topological Data Analysis (TDA)"
+title-slide-attributes: 
+  data-background-image: "drawing.png"
+  data-background-opacity: "0.2"
 logo: logo.png
 subtitle: "Shape Reconstruction from Noisy Data"
-author: "<b>Sushovan Majhi</b><br><i>George Washington University, Washington DC, USA</i>"
+author: "<span class='green'><b>Sushovan Majhi</b></span><br><i>George Washington University, Washington DC, USA</i>"
 fig-cap-location: bottom
 
 format: 
@@ -19,8 +22,7 @@ editor:
 ---
 
 # 
-
-![Data Science vs Math](joke.png)
+![](joke.png){fig-align="center"}
 
 # Today's Agenda
 - Getting to know each other
@@ -49,23 +51,33 @@ editor:
 - Website: smajhi.com
 - Email: <s.majhi@gwu.edu>
 
-## What is Data Science?
-- What is Data Science?
-
-  > It's the *art* of learning meaningful *patterns* from data.
-
-- Who is a Data Scientist?
-  
-  > *You*.
-
-- What is Topological Data Analysis (TDA)?
-
-  > TDA is a subfield of data science that focuses on the systematic learning  of *geometric* and *topological* patterns of data.
-
 # Topological Data Analysis
 ![](WordArt.png){fig-align="center"}
 
-## Shape of Data
+## What is Data Science?
+- What is Data Science?
+
+  > It's the *art*of learning meaningful <span class="green">**patterns**</span>  from data.
+
+- What is Topological Data Analysis (TDA)?
+
+  > TDA is a subfield of data science that focuses on the systematic learning of <span class="green">**geometric**</span> and <span class="green">**topological**</span> patterns of data.
+
+
+## Contributing Fields {.smaller}
+- <span class="green">Computational Geomtry</span>
+  
+  > geometric algorithms to compute convex hulls, geometric complexes, polytopes
+
+- <span class="green">Computational Topology</span>
+
+  > algorithms to compute various topological invariants---e.g., homology groups, Betti numbers, Euler characteristic---of a finite-enough topological space 
+
+- <span class="green">Applied Topology</span>
+  
+  > apply topological ideas in sensor network, motion planning in robotics configuration spaces, etc.
+
+# Shape of Data
 ![A sample](sample_wedge.png)
 
 ## Learn Geometric Patterns (Features)
@@ -75,14 +87,15 @@ editor:
 - The geometry of the data is graph-like
 
 
-## Success of TDA
 
-1. The data inherit an intrinsic topological sturcture
-2. Topology-inspired methods are robust to outliers
-3. Easy to mitigate the *curse of dimensionality*
-4. Geometry-aware deep learning methods facilitate interpretation 
-      - geometricdeeplearning.com
-- Software `Giotto-tda`, `Gudhi`
+# Success of TDA
+
+- Data inherit an <span class="green">intrinsic topological structure</span> in many applications
+- Topology-inspired methods are robust to small perturbations (<span class="green">stability</span>)
+- Easy to mitigate the *curse of dimensionality* (<span class="green">scalability</span>)
+- Geometry- and topology-aware deep learning methods facilitate easy interpretation (<span class="green">intuitive</span>)
+      - <span class="green">geometricdeeplearning.com</span>
+- Free, open-source software like `Giotto-tda`, `Gudhi`
 
 ## Particular Application Areas {.smaller}
 - Shape Reconstruction
@@ -94,22 +107,8 @@ editor:
 - Predicting Indian Monsoon
   - Ongoing collaboration
 - Deep Learning Pipelines
+  
   - topological deep learning
-
-
-
-## Related Fields {.smaller}
-- Computational Topology
-
-  > algorithmcally compute various topological invariants, e.g., homology groups, Betti numbers, Euler characteristic, etc
-
-- Applied Topology
-  
-  > apply topological ideas in sensor network, motion planning in robotics configuration spaces etc
-
-- TDA
-  
-  > learning from big data, (stratified) manifold learning, shape reconstruction and comparison, and so much more...
 
 
 
