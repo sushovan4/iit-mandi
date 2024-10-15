@@ -1,11 +1,11 @@
 ---
-title: "A Taste of Topological Data Analysis (TDA)"
+title: "<span class='pref'>A Taste of</span>Topological Data Analysis (TDA)"
 title-slide-attributes: 
   data-background-image: "drawing.png"
-  data-background-opacity: "0.2"
+  data-background-opacity: "0.3"
 logo: logo.png
 subtitle: "Shape Reconstruction from Noisy Data"
-author: "<span class='green'><b>Sushovan Majhi</b></span><br><i>George Washington University, Washington DC, USA</i>"
+author: "<span class='green'><b>Sushovan Majhi</b></span><br><i>George Washington University, Washington D.C.</i>"
 fig-cap-location: bottom
 
 format: 
@@ -26,10 +26,11 @@ editor:
 
 # Today's Agenda
 - Getting to know each other
-- Topological Data Analysis (TDA)
+- Topological Data Analysis (<span class="green">TDA</span>)
   - Why and How
 - The problem of shape reconstruction
 - Shape reconstruction techniques
+    - Vietoris--Rips complexes, Persistent Homology
 - Opportunities
 - Questions
 
@@ -48,8 +49,8 @@ editor:
   
 ![](qr.png){fig-align="center" width="300"}
 
-- Website: smajhi.com
-- Email: <s.majhi@gwu.edu>
+- Website: <span class="green">smajhi.com</span>
+- Email: <span class="green">s.majhi@gwu.edu</span>
 
 # Topological Data Analysis
 ![](WordArt.png){fig-align="center"}
@@ -57,7 +58,7 @@ editor:
 ## What is Data Science?
 - What is Data Science?
 
-  > It's the *art*of learning meaningful <span class="green">**patterns**</span>  from data.
+  > It's the *art* of learning meaningful <span class="green">**patterns**</span>  from data.
 
 - What is Topological Data Analysis (TDA)?
 
@@ -80,28 +81,30 @@ editor:
 # Shape of Data
 ![A sample](sample_wedge.png)
 
-## Learn Geometric Patterns (Features)
+## Learn Geometric Patterns / Features {.smaller}
 ![A Reconstruction](wedge.png)
 
-- The topology of data is the wedge of two circles (two holes)
-- The geometry of the data is graph-like
+- The <span class="green">topology</span> of data is the wedge of two circles (two $1$-dimensional cycles)
+- The <span class="green">geometry</span> of the data is graph-like
 
-
-
-# Success of TDA
+# Success of TDA {.smaller}
 
 - Data inherit an <span class="green">intrinsic topological structure</span> in many applications
 - Topology-inspired methods are robust to small perturbations (<span class="green">stability</span>)
 - Easy to mitigate the *curse of dimensionality* (<span class="green">scalability</span>)
 - Geometry- and topology-aware deep learning methods facilitate easy interpretation (<span class="green">intuitive</span>)
-      - <span class="green">geometricdeeplearning.com</span>
+  - <span class="green">geometricdeeplearning.com</span>
 - Free, open-source software like `Giotto-tda`, `Gudhi`
 
 ## Particular Application Areas {.smaller}
 - Shape Reconstruction
   - <span class="green">Manifold</span>: @MajhiLatschev
-  - <span class="green">Graph<.span>: @Majhi2023
+  - <span class="green">Graph</span>: @Majhi2023
   - <span class="green">More general spaces</span>: @majhiStab
+
+- Riemannian manifold learning Algorithms
+  - Fefferman et al.
+  
 - Detection of Financial Market Crash
   - @Rai2024-id
 - Predicting Indian Monsoon
@@ -119,7 +122,7 @@ editor:
 :::{layout-ncol="2"}
 ![Circle](circle.png)
 
-![Donut](torus.png){width="100%"}3
+![Donut](torus.png){width="100%"}
 :::
 
 ## The <span class="red">Bad</span> Shapes
@@ -276,6 +279,17 @@ drawRips = function (svg, rips) {
 
 # {background-iframe="https://www.smajhi.com/shape-reconstruction" background-interactive="true"}
 
+
+# Shape Reconstruction <span class='green'>Techniques</span>
+The two major realms:
+
+1. Persistent Homology
+2. Exact scales
+
+Other considerations:
+
+- Statistical analysis
+- Manifold Learning
 
 # Limitations of TDA
 - TDA is theory-heavy with a steep learning curve

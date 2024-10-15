@@ -10,3 +10,15 @@
 .red {
     color: rgb(226, 19, 19)!important; 
 }
+.subtitle {
+    font-style: italic;
+}
+.title .pref {
+    display: inline-block;
+    position: absolute;
+    transform: translate(-50%, -55%);
+    font-style: italic;
+    color: #3be57f;
+    font-size: 0.6em;
+    font-family: cursive;
+}
