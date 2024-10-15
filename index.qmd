@@ -306,6 +306,8 @@ drawRips = function (svg, rips) {
 
 - Graduate schools like OSU, Michigan S, Duke, Montana State, Tulane, etc have TDA groups <span class="green">with funding</span>
 
+- INRIA, France has groups like <span class="green">DataShape</span>
+   
 - Companies like Ayasdi are hiring topological data scientists and interns
 
 - Open-source projects in TDA: Gudhi, Giotto-tda, Scikit-tda
