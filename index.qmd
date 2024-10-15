@@ -296,16 +296,25 @@ drawRips = function (svg, rips) {
 
 
 # Limitations of TDA
-- TDA is theory-heavy with a steep learning curve
+- TDA is theory-heavy with a <span class="red">steep learning curve</span>
 - The community is strong but not as vast
 - Not applicable to data without any instrinsic geometry.
 - We need more open-source software implementation of TDA tools.
 
 
 # Opportunities
-- TDA 
 
-# Questions
-Thank you
+- Graduate schools like OSU, Michigan S, Duke, Montana State, Tulane, etc have TDA groups <span class="green">with funding</span>
+
+- Companies like Ayasdi are hiring topological data scientists and interns
+
+- Open-source projects in TDA: Gudhi, Giotto-tda, Scikit-tda
 
 # References
+
+::: {#refs}
+:::
+
+# Questions
+
+<span class="green">Thank you</span>
