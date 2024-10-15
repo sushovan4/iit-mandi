@@ -102,13 +102,15 @@ editor:
   - <span class="green">Graph</span>: @Majhi2023
   - <span class="green">More general spaces</span>: @majhiStab
 
-- Riemannian manifold learning Algorithms
-  - Fefferman et al.
-  
+- Riemannian manifold learning
+  - @SMALE
+- Dimensionality reduction
+  - Fefferman @FeffermanHypothesis
+
+
 - Detection of Financial Market Crash
   - @Rai2024-id
 - Predicting Indian Monsoon
-  - Ongoing collaboration
 - Deep Learning Pipelines
   
   - <span class="green">topological deep learning</span>
@@ -117,7 +119,7 @@ editor:
 
 # The <span class="red">Problem</span> of <span class="green">Shape Reconstruction</span>
 
-## The <span class="green">Good</span> Shapes
+## <span class="green">Good</span> Shapes
 
 :::{layout-ncol="2"}
 ![Circle](circle.png)
@@ -125,8 +127,8 @@ editor:
 ![Donut](torus.png){width="100%"}
 :::
 
-## The <span class="red">Bad</span> Shapes
-![IIT Mandi Campus](map.png)
+## <span class="red">Bad</span> Shapes
+![IIT Mandi North Campus](map.png)
 
 ## A Real Application
 ![The City of Berlin](berlin.jpg)
@@ -141,21 +143,27 @@ Q: How to draw the map of the city from a noisy point-cloud of GPS locations?
 ##
 
 - <span class="green">**Shape**</span>: A *Shape* is modeled as a metric space $(M,d_M)$.
-  - general compact set, metric graph, Riemannian manifold.
+  - <span class="green">Riemannian manifold</span>
+  - <span class="red">metric graph</span>
+  - <span class="red">general compact set</span>
 
 - <span class="green">**Sample**</span>: A *finite* metric space $(X,d_X)$ *close* to $M$.
 
-    - small Hausdorff proximity if $M$ is a Euclidean submanifold and $X\subset\mathbb R^d$; alternatively, small Gromov--Hausdorff distance.
+    - small <span class="green">Hausdorff</span> proximity if $M$ is a Euclidean submanifold and $X\subset\mathbb R^d$
+    - alternatively, small <span class="green">Gromov--Hausdorff</span> distance.
 
 ##
 
 - <span class="green">**Goal**</span>: Infer the topology of $M$ from $X$.
 
-    - Estimate only the Betti numbers: number of connected components, cycles, voids, etc, of $M$.
+    - Estimate only the Betti numbers---number of connected components, cycles, voids, etc---of $M$.
 
-    - construct a topological space $\widetilde{M}$ from $X$ to retain the topology of $M$, i.e., $M\simeq\widetilde{M}$.
+    - construct a topological space $\widetilde{M}$ from $X$ to retain the topology of $M$, i.e., $M\simeq\widetilde{M}$ in some appropriate sense.
+      - homotopy equivalent
+      - homeomorphic
+      - geometrically close
 
-# Vietoris--Rips Complex {.smaller background-color="white"}
+# Vietoris--Rips Complex {.smaller}
   - a metric space $(X,d_X)$
   
   - a scale $\beta>0$ 
@@ -212,13 +220,13 @@ V = [];
     .style("background", "steelblue");
   container
     .append("div")
-    .style("margin-left", "3px")
+    .style("margin-left", "12px")
     .style("width", height)
     .style("display", "inline-block")
     .style("text-align", "center")
     .style("transform", "rotate(-90deg)")
     .style("transform-origin", "top left")
-    .html(tex`\epsilon`.outerHTML);
+    .html(tex`\beta`.outerHTML);
 
   drawRips(svg, sc.rips(V, scale, 2));
 
@@ -266,12 +274,12 @@ drawRips = function (svg, rips) {
     .attr("class", "vertex")
     .attr("cx", (d) => d[0])
     .attr("cy", (d) => d[1])
-    .attr("r", "2px")
+    .attr("r", "4px")
     .on("mouseover", function () {
-      d3.select(this).attr("fill", "orange").attr("r", "5px");
+      d3.select(this).attr("fill", "red").attr("r", "6px");
     })
     .on("mouseout", function () {
-      d3.select(this).attr("fill", "black").attr("r", "2px");
+      d3.select(this).attr("fill", "white").attr("r", "4px");
     });
     return svg;
 }
@@ -279,17 +287,13 @@ drawRips = function (svg, rips) {
 
 # {background-iframe="https://www.smajhi.com/shape-reconstruction" background-interactive="true"}
 
+# The <span class="green">Theme</span> of <span class="red">My Research</span>
 
-# Shape Reconstruction <span class='green'>Techniques</span>
-The two major realms:
+- Design provable reconstruction algorithms particularly for <span class="red">bad</span> shapes
+- Provide a window of *resolution* or *scale* for the Vietoris--Rips complexes for an accurate reconstruction
+- Probabilic guarantees in the face of <span class="red">random samples</span>
+- Further the <span class="green">theoretical understanding</span> and <span class="green">computational aspects</span> of the density conditions, e.g., Gromov--Hausdorff distances
 
-1. Persistent Homology
-2. Exact scales
-
-Other considerations:
-
-- Statistical analysis
-- Manifold Learning
 
 # Limitations of TDA
 - TDA is theory-heavy with a steep learning curve
